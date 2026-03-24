@@ -24,15 +24,15 @@ void setup() {
 }
 
 void onClock() {
-  char output[20];
+  char output[15];
 
   unsigned int address = 0;
 
-  for (int n = 0; n < 16; n += 1) {
+ for (int n = 0; n < 16; n += 1) {
     int bit = digitalRead(ADDR[n]) ? 1 : 0;
     Serial.print(bit);
     address = (address << 1) + bit;
-  }
+}
 
   Serial.print("   ");
 
@@ -42,8 +42,8 @@ void onClock() {
   for (int n = 0; n < 8; n += 1) {
     int bit = digitalRead(DATA[n]) ? 1 : 0;
     Serial.print(bit);
-    data = (data << 1) + bit;
-  }
+    data = (data << 1) + bit; 
+}
 
   sprintf(output, "   %04x   %c   %02x", address, digitalRead(READ_WRITE) ? 'r': 'W', data);
   Serial.println(output);
